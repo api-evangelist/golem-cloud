@@ -1,0 +1,1208 @@
+{
+  "item": [
+    {
+      "id": "9f31d1f7-2685-41f5-995d-800b35cb6287",
+      "name": "Components",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bda4cc68-4885-497c-9891-892b6d59f0ca",
+          "name": "Create a new component in the environment",
+          "request": {
+            "name": "Create a new component in the environment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "envs",
+                "{environment_id}",
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "environment_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "0f5ac5e5-5af1-4b41-8257-abe69154b4ae",
+          "name": "List all components in the environment",
+          "request": {
+            "name": "List all components in the environment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "envs",
+                "{environment_id}",
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "environment_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "9e75d6c6-8aa9-46e0-bd9c-b6adef3231eb",
+          "name": "Get a component in the environment by name",
+          "request": {
+            "name": "Get a component in the environment by name",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "envs",
+                "{environment_id}",
+                "components",
+                "{component_name}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "environment_id",
+                  "value": ""
+                },
+                {
+                  "key": "component_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "9ca3bb09-67c3-4584-9c2f-c0a2535c7416",
+          "name": "Get the latest version of a component",
+          "request": {
+            "name": "Get the latest version of a component",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "dc3b1925-4332-4531-aad6-41fecf0a132a",
+          "name": "Update a component with a new version",
+          "request": {
+            "name": "Update a component with a new version",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "PATCH",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "dc856bdb-1ae8-4591-bd2a-6cde78bdeb2a",
+          "name": "Delete a component",
+          "request": {
+            "name": "Delete a component",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "22f49dde-cc7a-4eac-a976-4c01bb0a603d",
+          "name": "Download the WASM binary of a component revision",
+          "request": {
+            "name": "Download the WASM binary of a component revision",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "revisions",
+                "{revision}",
+                "wasm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "revision",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "ac9b56cc-58e8-4a8b-a75d-dd65d32bc613",
+      "name": "Workers & Invocation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb8a4cc5-0c58-4ba5-aba8-48f380c0c272",
+          "name": "Launch a new worker",
+          "request": {
+            "name": "Launch a new worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "836b667f-6132-4567-ac0b-ef42f9d070c6",
+          "name": "Get metadata of multiple workers",
+          "request": {
+            "name": "Get metadata of multiple workers",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "8274753d-7fe7-491b-9720-6e0774566c83",
+          "name": "Get metadata of a worker",
+          "request": {
+            "name": "Get metadata of a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "1d5b8740-0d15-485e-9c9f-d424b9cd4a7f",
+          "name": "Delete a worker",
+          "request": {
+            "name": "Delete a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "2a139cf6-ce7e-4a47-a7f8-42163fa756cb",
+          "name": "Invoke a function on a worker",
+          "request": {
+            "name": "Invoke a function on a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "invoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "9015ad3b-977a-4ef1-bcbe-3b076848d5d8",
+          "name": "Invoke a function and await the result",
+          "request": {
+            "name": "Invoke a function and await the result",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "invoke-and-await"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "bc0949ad-b548-4abe-8f68-96dc9a8f5817",
+          "name": "Interrupt a worker",
+          "request": {
+            "name": "Interrupt a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "interrupt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        },
+        {
+          "id": "1a362d45-d5a8-4b89-bccd-ccdbfd8fc068",
+          "name": "Resume a worker",
+          "request": {
+            "name": "Resume a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        },
+        {
+          "id": "3d17e416-5988-44ed-b241-a5c081ccff5d",
+          "name": "Update a worker",
+          "request": {
+            "name": "Update a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "877b3052-98a5-473d-9e3a-5401fb45889e",
+          "name": "Get the oplog of a worker",
+          "request": {
+            "name": "Get the oplog of a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "oplog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "0c550d51-0f16-48c4-a78c-6ba2ec4c4520",
+          "name": "Connect to a worker (WebSocket event stream)",
+          "request": {
+            "name": "Connect to a worker (WebSocket event stream)",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "connect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "73668a96-27b4-4ddd-bad1-cc9c3a142568",
+      "name": "API Definitions & Deployments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfca5511-26c0-42f9-9aa2-3eaf995675fa",
+          "name": "List HTTP API definitions",
+          "request": {
+            "name": "List HTTP API definitions",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "1f3d0d39-311e-4771-af6a-e5f3051590fa",
+          "name": "Create an HTTP API definition",
+          "request": {
+            "name": "Create an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "5f287d7c-45f4-470f-8e87-2e970ae665bd",
+          "name": "Get an HTTP API definition",
+          "request": {
+            "name": "Get an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                "{id}",
+                "{version}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                },
+                {
+                  "key": "version",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "00c60788-550a-4771-a66d-51be3a949430",
+          "name": "Update an HTTP API definition",
+          "request": {
+            "name": "Update an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                "{id}",
+                "{version}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                },
+                {
+                  "key": "version",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "e2c2d9ee-359b-4508-b65d-8c0cd0897612",
+          "name": "Delete an HTTP API definition",
+          "request": {
+            "name": "Delete an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                "{id}",
+                "{version}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                },
+                {
+                  "key": "version",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "8bb14709-bff2-4416-94a5-056ff9f4de82",
+          "name": "List HTTP API deployments",
+          "request": {
+            "name": "List HTTP API deployments",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "03c734f0-91e9-4574-8a2d-886b7fdc4051",
+          "name": "Deploy an HTTP API definition",
+          "request": {
+            "name": "Deploy an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "cc0fc3dd-529a-4f9e-a20d-205e5bff8928",
+          "name": "Get an HTTP API deployment by site",
+          "request": {
+            "name": "Get an HTTP API deployment by site",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments",
+                "{site}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "site",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "1b677c6c-11b3-4c97-83be-f75b9609cda5",
+          "name": "Delete an HTTP API deployment",
+          "request": {
+            "name": "Delete an HTTP API deployment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments",
+                "{site}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "site",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "57de2c25-daaa-4507-a24c-c3c2c19ed8b1",
+      "name": "Plugins",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47144987-aae2-4b28-ba5a-b39637194745",
+          "name": "List registered plugins for an account",
+          "request": {
+            "name": "List registered plugins for an account",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                "{account_id}",
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "account_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "1be4b199-705e-4ed4-954f-062aaece753d",
+          "name": "Register a new plugin",
+          "request": {
+            "name": "Register a new plugin",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                "{account_id}",
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "account_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "9bdbc850-459a-4172-9992-4e9147ecdec7",
+          "name": "Get a plugin by id",
+          "request": {
+            "name": "Get a plugin by id",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "plugins",
+                "{plugin_id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "plugin_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "e85ce2d5-1368-4530-93af-cc04d49d5e2a",
+          "name": "Delete a plugin",
+          "request": {
+            "name": "Delete a plugin",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "plugins",
+                "{plugin_id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "plugin_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "c073f1f0-8753-4b7d-833a-efebad2d7b80",
+          "name": "Activate a plugin on a worker",
+          "request": {
+            "name": "Activate a plugin on a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "activate-plugin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        },
+        {
+          "id": "e0e512ed-f405-4a0b-9990-8afb08801e36",
+          "name": "Deactivate a plugin on a worker",
+          "request": {
+            "name": "Deactivate a plugin on a worker",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "components",
+                "{component_id}",
+                "workers",
+                "{agent_name}",
+                "deactivate-plugin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "component_id",
+                  "value": ""
+                },
+                {
+                  "key": "agent_name",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://release.api.golem.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c507c017-ba8f-4e37-958a-b0e98b226a80",
+    "name": "Golem Cloud API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Golem durable computing platform - components, durable workers and invocation, custom HTTP API definitions and deployments, and plugins.\n\nContact Support:\n Name: Golem Cloud Support\n URL: https://learn.golem.cloud",
+      "type": "text/plain"
+    }
+  }
+}

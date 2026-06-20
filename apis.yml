@@ -1,0 +1,140 @@
+aid: golem-cloud
+url: https://raw.githubusercontent.com/api-evangelist/golem-cloud/refs/heads/main/apis.yml
+name: Golem
+kind: company
+description: Golem is an open-source durable computing platform for building agents and
+  distributed applications that never lose state. You deploy WebAssembly components and
+  invoke durable serverless workers through a REST API; the runtime transparently persists
+  every worker's execution so it survives crashes, restarts, and redeploys. Golem ships as
+  open source you self-host and as the managed Golem Cloud hosted service.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Durable Computing
+- Serverless
+- WebAssembly
+- Workers
+- Agents
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: golem-cloud:components
+  name: Golem Components API
+  tags:
+  - Components
+  - WebAssembly
+  - Registry
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://learn.golem.cloud/concepts/components
+  baseURL: https://release.api.golem.cloud
+  properties:
+  - url: https://learn.golem.cloud/concepts/components
+    type: Documentation
+  - url: https://learn.golem.cloud/rest-api/component
+    type: APIReference
+  - url: openapi/golem-cloud-openapi.yml
+    type: OpenAPI
+  - url: collections/golem-cloud.postman_collection.json
+    type: PostmanCollection
+  - url: collections/golem-cloud.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/golemcloud/golem
+    type: GitHub
+  description: Upload, version, and list WebAssembly components in an environment. Each
+    component is the deployable unit of code from which durable workers (agents) are
+    launched, with revisions and downloadable WASM binaries.
+- aid: golem-cloud:workers-invocation
+  name: Golem Workers & Invocation API
+  tags:
+  - Workers
+  - Invocation
+  - Durable Execution
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://learn.golem.cloud/concepts/workers
+  baseURL: https://release.api.golem.cloud
+  properties:
+  - url: https://learn.golem.cloud/concepts/workers
+    type: Documentation
+  - url: https://learn.golem.cloud/rest-api/worker
+    type: APIReference
+  - url: openapi/golem-cloud-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/golem-cloud-asyncapi.yml
+    type: AsyncAPI
+  - url: collections/golem-cloud.postman_collection.json
+    type: PostmanCollection
+  - url: collections/golem-cloud.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/golemcloud/golem
+    type: GitHub
+  description: Launch, invoke, and manage durable workers. Invoke fire-and-forget or
+    invoke-and-await for results, interrupt, resume, update, revert, fork, inspect oplog
+    and files, and stream live events over a WebSocket connection. Execution is durably
+    persisted so workers survive failures.
+- aid: golem-cloud:api-definitions-deployments
+  name: Golem API Definitions & Deployments API
+  tags:
+  - API Gateway
+  - Deployments
+  - HTTP APIs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://learn.golem.cloud/invoke/making-custom-apis
+  baseURL: https://release.api.golem.cloud
+  properties:
+  - url: https://learn.golem.cloud/invoke/making-custom-apis
+    type: Documentation
+  - url: https://learn.golem.cloud/rest-api/api-deployment
+    type: APIReference
+  - url: openapi/golem-cloud-openapi.yml
+    type: OpenAPI
+  - url: collections/golem-cloud.postman_collection.json
+    type: PostmanCollection
+  - url: collections/golem-cloud.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/golemcloud/golem
+    type: GitHub
+  description: Define and deploy custom HTTP APIs (the Worker Gateway) that map external
+    HTTP routes onto worker invocations, bind them to domains, and manage deployment
+    revisions per environment - turning durable workers into public HTTP endpoints.
+- aid: golem-cloud:plugins
+  name: Golem Plugins API
+  tags:
+  - Plugins
+  - Extensibility
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://learn.golem.cloud/concepts/plugins
+  baseURL: https://release.api.golem.cloud
+  properties:
+  - url: https://learn.golem.cloud/concepts/plugins
+    type: Documentation
+  - url: https://learn.golem.cloud/rest-api/plugin
+    type: APIReference
+  - url: openapi/golem-cloud-openapi.yml
+    type: OpenAPI
+  - url: collections/golem-cloud.postman_collection.json
+    type: PostmanCollection
+  - url: collections/golem-cloud.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/golemcloud/golem
+    type: GitHub
+  description: Register, list, and delete plugins and grant them to environments; plugins
+    can be activated or deactivated on individual workers to extend the runtime with
+    component transformation and observability hooks.
+common:
+- type: GitHubOrganization
+  url: https://github.com/golemcloud
+- type: LinkedIn
+  url: https://www.linkedin.com/company/golem-cloud
+- type: Website
+  url: https://www.golem.cloud
+- type: Documentation
+  url: https://learn.golem.cloud
+- type: Plans
+  url: plans/golem-cloud-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/golem-cloud-rate-limits.yml
+- type: FinOps
+  url: finops/golem-cloud-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

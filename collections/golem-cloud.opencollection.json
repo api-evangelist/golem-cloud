@@ -1,0 +1,450 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golem Cloud API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new component in the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/envs/{environment_id}/components",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Create a new component in the environment"
+        },
+        {
+          "info": {
+            "name": "List all components in the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/envs/{environment_id}/components"
+          },
+          "docs": "List all components in the environment"
+        },
+        {
+          "info": {
+            "name": "Get a component in the environment by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/envs/{environment_id}/components/{component_name}"
+          },
+          "docs": "Get a component in the environment by name"
+        },
+        {
+          "info": {
+            "name": "Get the latest version of a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}"
+          },
+          "docs": "Get the latest version of a component"
+        },
+        {
+          "info": {
+            "name": "Update a component with a new version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Update a component with a new version"
+        },
+        {
+          "info": {
+            "name": "Delete a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}"
+          },
+          "docs": "Delete a component"
+        },
+        {
+          "info": {
+            "name": "Download the WASM binary of a component revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/revisions/{revision}/wasm"
+          },
+          "docs": "Download the WASM binary of a component revision"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workers & Invocation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Launch a new worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launch a new worker"
+        },
+        {
+          "info": {
+            "name": "Get metadata of multiple workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers"
+          },
+          "docs": "Get metadata of multiple workers"
+        },
+        {
+          "info": {
+            "name": "Get metadata of a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}"
+          },
+          "docs": "Get metadata of a worker"
+        },
+        {
+          "info": {
+            "name": "Delete a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}"
+          },
+          "docs": "Delete a worker"
+        },
+        {
+          "info": {
+            "name": "Invoke a function on a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/invoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invoke a function on a worker"
+        },
+        {
+          "info": {
+            "name": "Invoke a function and await the result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/invoke-and-await",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invoke a function and await the result"
+        },
+        {
+          "info": {
+            "name": "Interrupt a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/interrupt"
+          },
+          "docs": "Interrupt a worker"
+        },
+        {
+          "info": {
+            "name": "Resume a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/resume"
+          },
+          "docs": "Resume a worker"
+        },
+        {
+          "info": {
+            "name": "Update a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a worker"
+        },
+        {
+          "info": {
+            "name": "Get the oplog of a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/oplog"
+          },
+          "docs": "Get the oplog of a worker"
+        },
+        {
+          "info": {
+            "name": "Connect to a worker (WebSocket event stream)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/connect"
+          },
+          "docs": "Connect to a worker (WebSocket event stream)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Definitions & Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List HTTP API definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/definitions"
+          },
+          "docs": "List HTTP API definitions"
+        },
+        {
+          "info": {
+            "name": "Create an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/api/definitions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Get an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/{id}/{version}"
+          },
+          "docs": "Get an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Update an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/{id}/{version}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Delete an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/{id}/{version}"
+          },
+          "docs": "Delete an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "List HTTP API deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/deployments"
+          },
+          "docs": "List HTTP API deployments"
+        },
+        {
+          "info": {
+            "name": "Deploy an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/api/deployments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Get an HTTP API deployment by site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/deployments/{site}"
+          },
+          "docs": "Get an HTTP API deployment by site"
+        },
+        {
+          "info": {
+            "name": "Delete an HTTP API deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/api/deployments/{site}"
+          },
+          "docs": "Delete an HTTP API deployment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plugins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List registered plugins for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/accounts/{account_id}/plugins"
+          },
+          "docs": "List registered plugins for an account"
+        },
+        {
+          "info": {
+            "name": "Register a new plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/accounts/{account_id}/plugins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new plugin"
+        },
+        {
+          "info": {
+            "name": "Get a plugin by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/plugins/{plugin_id}"
+          },
+          "docs": "Get a plugin by id"
+        },
+        {
+          "info": {
+            "name": "Delete a plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/plugins/{plugin_id}"
+          },
+          "docs": "Delete a plugin"
+        },
+        {
+          "info": {
+            "name": "Activate a plugin on a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/activate-plugin"
+          },
+          "docs": "Activate a plugin on a worker"
+        },
+        {
+          "info": {
+            "name": "Deactivate a plugin on a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/{component_id}/workers/{agent_name}/deactivate-plugin"
+          },
+          "docs": "Deactivate a plugin on a worker"
+        }
+      ]
+    }
+  ]
+}

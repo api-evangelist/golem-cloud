@@ -1,0 +1,121 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Golem
+providerId: golem-cloud
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Durable Computing
+- Serverless
+- WebAssembly
+- Workers
+- Agents
+- Plans
+description: >-
+  Golem ships in two forms. The Golem runtime is open source (BUSL-1.1,
+  transitioning to Apache 2.0) and free to self-host with no license fee - you
+  run it on your own infrastructure and pay only for that infrastructure. The
+  managed Golem Cloud hosted service is, as of this writing, a free Developer
+  Preview; usage-based general-availability pricing (billed on concurrently
+  active agents and workflows) plus on-premise and enterprise editions with
+  commercial support are planned but not publicly listed with rates. Sales-led
+  and preview pricing is not reconciled here.
+notes: >-
+  Hosted Golem Cloud is in Developer Preview; paid GA, SLAs, and an on-prem
+  edition are announced as forthcoming. Confirm current rates on the Golem
+  pricing page during reconciliation.
+sources:
+- https://www.golem.cloud/pricing
+- https://www.golem.cloud/post/golem-goes-open-source
+- https://github.com/golemcloud/golem
+plans:
+- id: golem-open-source
+  name: Open Source (Self-Hosted)
+  type: free
+  description: >-
+    The open-source Golem runtime, self-hosted on your own infrastructure.
+    No license fee; you operate and pay for the underlying compute and storage.
+  entries:
+  - label: Self-Hosted Runtime
+    name: self_hosted
+    type: free
+    metric: deployment
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (BUSL-1.1 license, self-managed infrastructure)
+    userMultiplied: false
+  elements:
+  - name: Components
+  - name: Workers & Invocation
+  - name: API Definitions & Deployments
+  - name: Plugins
+- id: golem-cloud-developer-preview
+  name: Golem Cloud Developer Preview
+  type: free
+  description: >-
+    The managed Golem Cloud hosted service during its current Developer
+    Preview, offered free without formal SLAs or data-retention guarantees.
+  entries:
+  - label: Developer Preview
+    name: developer_preview
+    type: free
+    metric: usage
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (Developer Preview)
+    userMultiplied: false
+  elements:
+  - name: Hosted Components
+  - name: Hosted Workers & Invocation
+  - name: Hosted API Definitions & Deployments
+- id: golem-cloud-usage
+  name: Golem Cloud Usage-Based (Planned)
+  type: usage
+  description: >-
+    Announced usage-based pricing for general availability of the hosted
+    service, billed on concurrently active agents and workflows. Public rates
+    were not listed at the time of writing.
+  entries:
+  - label: Active Agents & Workflows
+    name: active_agents
+    type: usage
+    metric: active_units
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: usage-based, see Golem pricing page (not yet publicly listed)
+    userMultiplied: false
+  elements:
+  - name: Durable Workers
+  - name: Workflows
+- id: golem-enterprise
+  name: Enterprise / On-Premise
+  type: enterprise
+  description: >-
+    Announced on-premise edition bundled with commercial support for Golem,
+    plus negotiated enterprise terms. Contact Golem sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: On-Premise Edition
+  - name: Commercial Support
+  - name: Custom Terms
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

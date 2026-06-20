@@ -1,0 +1,93 @@
+aid: golem-cloud
+name: Golem
+review:
+  question: Does Golem expose a documented public WebSocket API?
+  answer: true
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  asyncapiScopeNote: |
+    Golem documents a real WebSocket surface: the worker `connect` endpoint
+    (GET /v1/components/{component_id}/workers/{agent_name}/connect) upgrades
+    the HTTP connection to a WebSocket and streams live worker events (stdout,
+    stderr, log output, and invocation events). Its operation summary in the
+    official Golem worker-service OpenAPI reads "Connect to a worker using a
+    websocket and stream events." An AsyncAPI 2.6 document was created at
+    asyncapi/golem-cloud-asyncapi.yml modeling this WebSocket channel.
+findings:
+  summary: |
+    Golem's core surface is a REST API (HTTPS) for components, durable workers
+    and invocation, custom HTTP API definitions and deployments (the Worker
+    Gateway), and plugins. In addition to REST, Golem documents one genuine
+    bidirectional WebSocket endpoint: the worker `connect` channel, which
+    streams a worker's live event log (stdout/stderr/log/invocation events)
+    to the client over a WebSocket (wss://) connection upgraded from the
+    `/connect` HTTP route. This is a true WebSocket transport, not SSE. The
+    same API is served by the open-source self-hosted runtime and by the
+    managed Golem Cloud hosted service. Authentication is via a bearer token.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://release.api.golem.cloud
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      note: Worker connect endpoint upgrades to a WebSocket and streams live worker events. Modeled in asyncapi/golem-cloud-asyncapi.yml.
+      documented: true
+  endpointsConfirmedRest:
+    - POST   /v1/envs/{environment_id}/components
+    - GET    /v1/envs/{environment_id}/components
+    - GET    /v1/envs/{environment_id}/components/{component_name}
+    - GET    /v1/components/{component_id}
+    - PATCH  /v1/components/{component_id}
+    - DELETE /v1/components/{component_id}
+    - GET    /v1/components/{component_id}/revisions/{revision}/wasm
+    - POST   /v1/components/{component_id}/workers
+    - GET    /v1/components/{component_id}/workers
+    - GET    /v1/components/{component_id}/workers/{agent_name}
+    - DELETE /v1/components/{component_id}/workers/{agent_name}
+    - POST   /v1/components/{component_id}/workers/{agent_name}/invoke
+    - POST   /v1/components/{component_id}/workers/{agent_name}/invoke-and-await
+    - POST   /v1/components/{component_id}/workers/{agent_name}/interrupt
+    - POST   /v1/components/{component_id}/workers/{agent_name}/resume
+    - POST   /v1/components/{component_id}/workers/{agent_name}/update
+    - GET    /v1/components/{component_id}/workers/{agent_name}/oplog
+    - POST   /v1/components/{component_id}/workers/{agent_name}/activate-plugin
+    - POST   /v1/components/{component_id}/workers/{agent_name}/deactivate-plugin
+    - GET    /v1/api/definitions
+    - POST   /v1/api/definitions
+    - GET    /v1/api/definitions/{id}/{version}
+    - PUT    /v1/api/definitions/{id}/{version}
+    - DELETE /v1/api/definitions/{id}/{version}
+    - GET    /v1/api/deployments
+    - POST   /v1/api/deployments
+    - GET    /v1/api/deployments/{site}
+    - DELETE /v1/api/deployments/{site}
+    - GET    /v1/accounts/{account_id}/plugins
+    - POST   /v1/accounts/{account_id}/plugins
+    - GET    /v1/plugins/{plugin_id}
+    - DELETE /v1/plugins/{plugin_id}
+  endpointsConfirmedWebSocket:
+    - GET /v1/components/{component_id}/workers/{agent_name}/connect
+sources:
+  - url: https://github.com/golemcloud/golem/blob/main/openapi/golem-worker-service.yaml
+    type: OpenAPI
+    note: Official worker-service OpenAPI; lists the worker REST endpoints and the connect WebSocket endpoint ("Connect to a worker using a websocket and stream events").
+  - url: https://github.com/golemcloud/golem/blob/main/openapi/golem-registry-service.yaml
+    type: OpenAPI
+    note: Official registry-service OpenAPI; lists component, environment, HTTP API deployment, and plugin endpoints.
+  - url: https://learn.golem.cloud
+    type: Documentation
+    note: Golem developer documentation covering components, workers, invocations, the Worker Gateway, and plugins.
+  - url: https://learn.golem.cloud/invoke/making-custom-apis
+    type: Documentation
+    note: Worker Gateway / custom HTTP API definitions and deployments.
+actions:
+  asyncapiPath: asyncapi/golem-cloud-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    A documented WebSocket surface exists (worker connect event stream). An
+    AsyncAPI 2.6 document was authored for that WebSocket channel and linked
+    from the Workers & Invocation API entry in apis.yml. The WebSocket
+    transport is documented explicitly throughout the spec (server protocol,
+    channel bindings) so it is not misrepresented as SSE or plain HTTP.

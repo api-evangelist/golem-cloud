@@ -1,0 +1,107 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Golem
+providerId: golem-cloud
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Durable Computing
+- Serverless
+- WebAssembly
+- Workers
+- Agents
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Golem spend. There are two distinct cost models. Self-hosted
+  open-source Golem carries no license fee - cost is entirely the underlying
+  infrastructure (compute, storage, network) you operate it on, governed by
+  your own cloud provider's FinOps practices. The managed Golem Cloud hosted
+  service is in a free Developer Preview; announced usage-based GA pricing is
+  expected to bill on concurrently active agents and workflows, but published
+  rates were not available, so hosted spend is not reconciled here.
+notes: >-
+  Hosted Golem Cloud GA pricing is announced but not yet publicly rated; this
+  artifact is not reconciled. For self-hosted Golem, apply standard
+  infrastructure FinOps to the compute and storage running the runtime.
+sources:
+- https://www.golem.cloud/pricing
+- https://www.golem.cloud/post/golem-goes-open-source
+- https://github.com/golemcloud/golem
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Golem
+serviceCategory: Compute
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Golem Cloud
+  ServiceCategory: Compute
+  ProviderName: Golem
+  PublisherName: Golem
+  InvoiceIssuerName: Golem
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: active_agents
+  description: Concurrently active durable workers/agents on the hosted service (announced GA billing basis).
+  unit: active_units
+  aggregation: max
+  dimensions:
+  - account
+  - environment
+- name: active_workflows
+  description: Concurrently active workflows on the hosted service (announced GA billing basis).
+  unit: active_units
+  aggregation: max
+  dimensions:
+  - account
+  - environment
+- name: invocations
+  description: Worker invocations (invoke and invoke-and-await) executed.
+  unit: invocations
+  aggregation: sum
+  dimensions:
+  - account
+  - component
+- name: component_storage
+  description: Storage consumed by uploaded WebAssembly component revisions.
+  unit: bytes
+  aggregation: max
+  dimensions:
+  - account
+  - environment
+- name: self_hosted_infrastructure
+  description: Underlying compute and storage cost of running self-hosted open-source Golem (no Golem license fee).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - cluster
+  - service
+principles:
+- name: Visibility
+  description: For hosted, track active agents/workflows in the Golem Cloud console; for self-hosted, attribute the runtime's cloud infrastructure spend.
+- name: Allocation
+  description: Tag components and environments per workload/team; map self-hosted clusters to internal cost centers.
+- name: Optimization
+  description: Self-host the open-source runtime to avoid hosted fees where control is preferred; interrupt or delete idle workers; right-size the self-hosted cluster.
+- name: Accountability
+  description: Assign owners per environment/application; review active-agent counts and infrastructure burn monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

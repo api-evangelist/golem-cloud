@@ -1,0 +1,85 @@
+asyncapi: 2.6.0
+info:
+  title: Golem Worker Connect (WebSocket) API
+  version: '1.0'
+  description: >-
+    AsyncAPI description of Golem's worker `connect` WebSocket endpoint. The
+    REST route GET /v1/components/{component_id}/workers/{agent_name}/connect
+    upgrades the connection to a WebSocket (wss://) and streams a durable
+    worker's live event log - stdout, stderr, structured log output, and
+    invocation events - to the connected client. This is a genuine WebSocket
+    transport, not Server-Sent Events. Authentication uses a bearer token.
+  license:
+    name: BUSL-1.1
+    url: https://github.com/golemcloud/golem/blob/main/LICENSE
+servers:
+  hosted:
+    url: release.api.golem.cloud
+    protocol: wss
+    description: Golem Cloud managed hosted service (WebSocket).
+    security:
+      - bearerToken: []
+  selfHosted:
+    url: localhost:9881
+    protocol: ws
+    description: Local self-hosted Golem worker service (WebSocket).
+channels:
+  /v1/components/{component_id}/workers/{agent_name}/connect:
+    description: >-
+      WebSocket channel that streams live events for a single durable worker.
+      The client opens the connection and receives a stream of worker event
+      messages; no client message body is required to start the stream.
+    parameters:
+      component_id:
+        description: The component the worker belongs to.
+        schema:
+          type: string
+          format: uuid
+      agent_name:
+        description: The worker (agent) name.
+        schema:
+          type: string
+    bindings:
+      ws:
+        method: GET
+    subscribe:
+      operationId: streamWorkerEvents
+      summary: Stream live events emitted by the worker.
+      message:
+        $ref: '#/components/messages/WorkerEvent'
+components:
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: Bearer token created for your Golem account.
+  messages:
+    WorkerEvent:
+      name: workerEvent
+      title: Worker Event
+      summary: A single event emitted by a connected worker.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - StdOut
+              - StdErr
+              - Log
+              - InvocationStart
+              - InvocationFinished
+            description: The kind of worker event.
+          timestamp:
+            type: string
+            format: date-time
+          message:
+            type: string
+            description: Text payload for stdout/stderr/log events.
+          level:
+            type: string
+            description: Log level for structured Log events.
+          context:
+            type: object
+            description: Optional structured context for the event.

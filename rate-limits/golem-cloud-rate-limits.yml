@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Golem
+providerId: golem-cloud
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Durable Computing
+- Serverless
+- WebAssembly
+- Workers
+- Agents
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Golem does not publish fixed numeric API rate limits. When self-hosted, the
+  open-source runtime imposes no provider-side rate limits - throughput is
+  bounded only by the infrastructure you run it on and any limits you configure.
+  The managed Golem Cloud hosted service is in Developer Preview and may apply
+  account-level quotas on components, concurrently active workers, and
+  invocation throughput; specific values are not publicly documented and are
+  not reconciled in this artifact.
+notes: >-
+  Verify any hosted Developer Preview quotas in the Golem Cloud console or with
+  Golem on reconciliation. Self-hosted deployments are limited by operator
+  infrastructure, not by Golem-imposed API rate limits.
+sources:
+- https://learn.golem.cloud
+- https://www.golem.cloud/pricing
+- https://github.com/golemcloud/golem
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (Hosted)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Hosted Developer Preview may apply per-account request throttling; values not published.
+- name: Concurrently Active Workers
+  scope: account
+  metric: workers
+  limit: see provider documentation
+  notes: Hosted service may cap concurrently active durable workers/agents; self-hosted is unbounded by Golem.
+- name: Component Count / Size
+  scope: environment
+  metric: components
+  limit: see provider documentation
+  notes: Hosted service may cap component count or upload size per environment.
+- name: Self-Hosted
+  scope: deployment
+  metric: requests
+  limit: infrastructure-bound
+  notes: Open-source self-hosted Golem imposes no provider rate limits; bounded by operator infrastructure.
+policies:
+- name: Self-Hosted Control
+  description: Operators of self-hosted Golem set their own gateway and infrastructure limits; Golem imposes none.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses from the hosted service.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
