@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/golem-cloud-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: Token
+  type: http
+  scheme: bearer
+  description: Bearer token created for your Golem account. Pass it in the Authorization header
+    as `Bearer <token>`.
+  sources:
+  - openapi/golem-cloud-openapi.yml

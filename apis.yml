@@ -121,6 +121,10 @@ apis:
     can be activated or deactivated on individual workers to extend the runtime with
     component transformation and observability hooks.
 common:
+- type: DomainSecurity
+  url: security/golem-cloud-domain-security.yml
+- type: Authentication
+  url: authentication/golem-cloud-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/golemcloud
 - type: LinkedIn
@@ -135,6 +139,8 @@ common:
   url: rate-limits/golem-cloud-rate-limits.yml
 - type: FinOps
   url: finops/golem-cloud-finops.yml
+- url: https://www.golem.cloud/rss.xml
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
