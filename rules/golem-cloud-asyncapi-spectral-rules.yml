@@ -1,0 +1,22 @@
+# golem-cloud — AsyncAPI Spectral ruleset (strengthened)
+# Plain Spectral. Rules measured from this provider's own AsyncAPI event
+# conventions by strengthen_asyncapi.py, then self-validated against the spec.
+#
+# Provenance:
+#   - security-schemes: ['bearerToken']
+extends:
+  - spectral:asyncapi
+rules:
+  security-schemes-defined:
+    description: Security schemes should be defined in components.
+    severity: warn
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
