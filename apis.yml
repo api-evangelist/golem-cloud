@@ -121,6 +121,8 @@ apis:
     can be activated or deactivated on individual workers to extend the runtime with
     component transformation and observability hooks.
 common:
+- type: AgenticAccess
+  url: agentic-access/golem-cloud-agentic-access.yml
 - type: DomainSecurity
   url: security/golem-cloud-domain-security.yml
 - type: Authentication
