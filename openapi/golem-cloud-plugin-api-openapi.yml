@@ -1,0 +1,163 @@
+openapi: 3.0.1
+info:
+  title: Golem Cloud ApiDefinition Plugin API
+  description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
+  termsOfService: https://www.golem.cloud/terms
+  contact:
+    name: Golem Cloud Support
+    url: https://learn.golem.cloud
+  license:
+    name: BUSL-1.1
+    url: https://github.com/golemcloud/golem/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://release.api.golem.cloud
+  description: Golem Cloud managed hosted service
+- url: http://localhost:9881
+  description: Local self-hosted Golem (default worker/registry service port)
+security:
+- Token: []
+tags:
+- name: Plugin
+  description: Plugin registration and grants.
+paths:
+  /v1/accounts/{account_id}/plugins:
+    get:
+      tags:
+      - Plugin
+      operationId: listPlugins
+      summary: List registered plugins for an account
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: A list of plugins.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plugin'
+    post:
+      tags:
+      - Plugin
+      operationId: createPlugin
+      summary: Register a new plugin
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plugin'
+      responses:
+        '200':
+          description: Plugin registered.
+  /v1/plugins/{plugin_id}:
+    get:
+      tags:
+      - Plugin
+      operationId: getPlugin
+      summary: Get a plugin by id
+      parameters:
+      - $ref: '#/components/parameters/PluginId'
+      responses:
+        '200':
+          description: The plugin.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+    delete:
+      tags:
+      - Plugin
+      operationId: deletePlugin
+      summary: Delete a plugin
+      parameters:
+      - $ref: '#/components/parameters/PluginId'
+      responses:
+        '200':
+          description: Plugin deleted.
+  /v1/components/{component_id}/workers/{agent_name}/activate-plugin:
+    post:
+      tags:
+      - Plugin
+      operationId: activatePlugin
+      summary: Activate a plugin on a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: plugin-installation-id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Plugin activated.
+  /v1/components/{component_id}/workers/{agent_name}/deactivate-plugin:
+    post:
+      tags:
+      - Plugin
+      operationId: deactivatePlugin
+      summary: Deactivate a plugin on a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: plugin-installation-id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Plugin deactivated.
+components:
+  parameters:
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PluginId:
+      name: plugin_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    AgentName:
+      name: agent_name
+      in: path
+      required: true
+      description: The worker (agent) name.
+      schema:
+        type: string
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Plugin:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        scope:
+          type: object
+        specs:
+          type: object
+  securitySchemes:
+    Token:
+      type: http
+      scheme: bearer
+      description: Bearer token created for your Golem account. Pass it in the Authorization header as `Bearer <token>`.

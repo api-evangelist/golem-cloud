@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: Golem Cloud ApiDefinition API
+  description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
+  termsOfService: https://www.golem.cloud/terms
+  contact:
+    name: Golem Cloud Support
+    url: https://learn.golem.cloud
+  license:
+    name: BUSL-1.1
+    url: https://github.com/golemcloud/golem/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://release.api.golem.cloud
+  description: Golem Cloud managed hosted service
+- url: http://localhost:9881
+  description: Local self-hosted Golem (default worker/registry service port)
+security:
+- Token: []
+tags:
+- name: ApiDefinition
+  description: Custom HTTP API definitions and deployments (Worker Gateway).
+paths:
+  /v1/api/definitions:
+    get:
+      tags:
+      - ApiDefinition
+      operationId: listApiDefinitions
+      summary: List HTTP API definitions
+      description: Lists the custom HTTP API definitions (Worker Gateway) that map external HTTP routes onto worker invocations.
+      parameters:
+      - name: api-definition-id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of API definitions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HttpApiDefinition'
+    post:
+      tags:
+      - ApiDefinition
+      operationId: createApiDefinition
+      summary: Create an HTTP API definition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HttpApiDefinition'
+      responses:
+        '200':
+          description: The created API definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpApiDefinition'
+  /v1/api/definitions/{id}/{version}:
+    get:
+      tags:
+      - ApiDefinition
+      operationId: getApiDefinition
+      summary: Get an HTTP API definition by id and version
+      parameters:
+      - $ref: '#/components/parameters/ApiDefinitionId'
+      - $ref: '#/components/parameters/ApiDefinitionVersion'
+      responses:
+        '200':
+          description: The API definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpApiDefinition'
+    put:
+      tags:
+      - ApiDefinition
+      operationId: updateApiDefinition
+      summary: Update an HTTP API definition
+      parameters:
+      - $ref: '#/components/parameters/ApiDefinitionId'
+      - $ref: '#/components/parameters/ApiDefinitionVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HttpApiDefinition'
+      responses:
+        '200':
+          description: The updated API definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpApiDefinition'
+    delete:
+      tags:
+      - ApiDefinition
+      operationId: deleteApiDefinition
+      summary: Delete an HTTP API definition
+      parameters:
+      - $ref: '#/components/parameters/ApiDefinitionId'
+      - $ref: '#/components/parameters/ApiDefinitionVersion'
+      responses:
+        '200':
+          description: API definition deleted.
+  /v1/api/deployments:
+    get:
+      tags:
+      - ApiDefinition
+      operationId: listApiDeployments
+      summary: List HTTP API deployments
+      parameters:
+      - name: api-definition-id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of API deployments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiDeployment'
+    post:
+      tags:
+      - ApiDefinition
+      operationId: deployApiDefinition
+      summary: Deploy an HTTP API definition to a host/domain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiDeploymentRequest'
+      responses:
+        '200':
+          description: The created deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDeployment'
+  /v1/api/deployments/{site}:
+    get:
+      tags:
+      - ApiDefinition
+      operationId: getApiDeployment
+      summary: Get an HTTP API deployment by site
+      parameters:
+      - name: site
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The API deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDeployment'
+    delete:
+      tags:
+      - ApiDefinition
+      operationId: deleteApiDeployment
+      summary: Delete an HTTP API deployment
+      parameters:
+      - name: site
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deployment deleted.
+components:
+  schemas:
+    HttpApiDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+        draft:
+          type: boolean
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+              path:
+                type: string
+              binding:
+                type: object
+    ApiDeployment:
+      type: object
+      properties:
+        apiDefinitions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              version:
+                type: string
+        site:
+          type: object
+          properties:
+            host:
+              type: string
+            subdomain:
+              type: string
+        createdAt:
+          type: string
+          format: date-time
+    ApiDeploymentRequest:
+      type: object
+      properties:
+        apiDefinitionId:
+          type: string
+        version:
+          type: string
+        site:
+          type: object
+          properties:
+            host:
+              type: string
+            subdomain:
+              type: string
+  parameters:
+    ApiDefinitionVersion:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+    ApiDefinitionId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    Token:
+      type: http
+      scheme: bearer
+      description: Bearer token created for your Golem account. Pass it in the Authorization header as `Bearer <token>`.

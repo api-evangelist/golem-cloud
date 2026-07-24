@@ -1,0 +1,333 @@
+openapi: 3.0.1
+info:
+  title: Golem Cloud ApiDefinition Worker API
+  description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
+  termsOfService: https://www.golem.cloud/terms
+  contact:
+    name: Golem Cloud Support
+    url: https://learn.golem.cloud
+  license:
+    name: BUSL-1.1
+    url: https://github.com/golemcloud/golem/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://release.api.golem.cloud
+  description: Golem Cloud managed hosted service
+- url: http://localhost:9881
+  description: Local self-hosted Golem (default worker/registry service port)
+security:
+- Token: []
+tags:
+- name: Worker
+  description: Durable worker lifecycle and invocation operations.
+paths:
+  /v1/components/{component_id}/workers:
+    post:
+      tags:
+      - Worker
+      operationId: launchNewWorker
+      summary: Launch a new worker
+      description: Creates a new durable worker (agent) from a component. The worker's execution is durably persisted and survives crashes and restarts.
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerCreationRequest'
+      responses:
+        '200':
+          description: The created worker id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerId'
+    get:
+      tags:
+      - Worker
+      operationId: getWorkersMetadata
+      summary: Get metadata of multiple workers
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Page of worker metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkersMetadataResponse'
+  /v1/components/{component_id}/workers/{agent_name}:
+    get:
+      tags:
+      - Worker
+      operationId: getWorkerMetadata
+      summary: Get metadata of a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      responses:
+        '200':
+          description: The worker metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerMetadata'
+    delete:
+      tags:
+      - Worker
+      operationId: deleteWorker
+      summary: Delete a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      responses:
+        '200':
+          description: Worker deleted.
+  /v1/components/{component_id}/workers/{agent_name}/invoke:
+    post:
+      tags:
+      - Worker
+      operationId: invokeFunction
+      summary: Invoke a function on a worker without waiting for a result
+      description: Fire-and-forget invocation of an exported function on the worker.
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: function
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: idempotency-key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeParameters'
+      responses:
+        '200':
+          description: Invocation accepted.
+  /v1/components/{component_id}/workers/{agent_name}/invoke-and-await:
+    post:
+      tags:
+      - Worker
+      operationId: invokeAndAwaitFunction
+      summary: Invoke a function on a worker and await its result
+      description: Synchronous invocation of an exported function; blocks until the durable worker returns a result value.
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: function
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: idempotency-key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeParameters'
+      responses:
+        '200':
+          description: The function result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvokeResult'
+  /v1/components/{component_id}/workers/{agent_name}/interrupt:
+    post:
+      tags:
+      - Worker
+      operationId: interruptWorker
+      summary: Interrupt a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: recovery-immediately
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Worker interrupted.
+  /v1/components/{component_id}/workers/{agent_name}/resume:
+    post:
+      tags:
+      - Worker
+      operationId: resumeWorker
+      summary: Resume a worker
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      responses:
+        '200':
+          description: Worker resumed.
+  /v1/components/{component_id}/workers/{agent_name}/update:
+    post:
+      tags:
+      - Worker
+      operationId: updateWorker
+      summary: Update a worker to a new component version
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkerRequest'
+      responses:
+        '200':
+          description: Worker update scheduled.
+  /v1/components/{component_id}/workers/{agent_name}/oplog:
+    get:
+      tags:
+      - Worker
+      operationId: getOplog
+      summary: Get the oplog of a worker
+      description: Returns the durable operation log that records every step of the worker.
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      - name: from
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: count
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: A page of oplog entries.
+  /v1/components/{component_id}/workers/{agent_name}/connect:
+    get:
+      tags:
+      - Worker
+      operationId: connectWorker
+      summary: Connect to a worker using a websocket and stream events
+      description: Upgrades the HTTP connection to a WebSocket and streams live worker events (stdout, stderr, log output, and invocation events). Modeled in detail in asyncapi/golem-cloud-asyncapi.yml.
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - $ref: '#/components/parameters/AgentName'
+      responses:
+        '101':
+          description: Switching protocols to WebSocket.
+components:
+  schemas:
+    WorkerCreationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        args:
+          type: array
+          items:
+            type: string
+        env:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateWorkerRequest:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - Automatic
+          - Manual
+        targetVersion:
+          type: integer
+          format: int64
+    WorkerMetadata:
+      type: object
+      properties:
+        workerId:
+          $ref: '#/components/schemas/WorkerId'
+        status:
+          type: string
+          enum:
+          - Running
+          - Idle
+          - Suspended
+          - Interrupted
+          - Retrying
+          - Failed
+          - Exited
+        componentVersion:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+    WorkersMetadataResponse:
+      type: object
+      properties:
+        workers:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerMetadata'
+        cursor:
+          type: string
+    InvokeParameters:
+      type: object
+      properties:
+        params:
+          type: array
+          items: {}
+    InvokeResult:
+      type: object
+      properties:
+        result: {}
+    WorkerId:
+      type: object
+      properties:
+        componentId:
+          type: string
+          format: uuid
+        workerName:
+          type: string
+  parameters:
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    AgentName:
+      name: agent_name
+      in: path
+      required: true
+      description: The worker (agent) name.
+      schema:
+        type: string
+  securitySchemes:
+    Token:
+      type: http
+      scheme: bearer
+      description: Bearer token created for your Golem account. Pass it in the Authorization header as `Bearer <token>`.

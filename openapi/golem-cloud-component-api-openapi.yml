@@ -1,0 +1,211 @@
+openapi: 3.0.1
+info:
+  title: Golem Cloud ApiDefinition Component API
+  description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
+  termsOfService: https://www.golem.cloud/terms
+  contact:
+    name: Golem Cloud Support
+    url: https://learn.golem.cloud
+  license:
+    name: BUSL-1.1
+    url: https://github.com/golemcloud/golem/blob/main/LICENSE
+  version: '1.0'
+servers:
+- url: https://release.api.golem.cloud
+  description: Golem Cloud managed hosted service
+- url: http://localhost:9881
+  description: Local self-hosted Golem (default worker/registry service port)
+security:
+- Token: []
+tags:
+- name: Component
+  description: WebAssembly component registry operations.
+paths:
+  /v1/envs/{environment_id}/components:
+    post:
+      tags:
+      - Component
+      operationId: createComponent
+      summary: Create a new component in the environment
+      description: Uploads a new WebAssembly component into the given environment.
+      parameters:
+      - $ref: '#/components/parameters/EnvironmentId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                component:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: The created component metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+        '400':
+          $ref: '#/components/responses/Error'
+    get:
+      tags:
+      - Component
+      operationId: listEnvironmentComponents
+      summary: List all components in the environment
+      parameters:
+      - $ref: '#/components/parameters/EnvironmentId'
+      responses:
+        '200':
+          description: A list of components.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Component'
+  /v1/envs/{environment_id}/components/{component_name}:
+    get:
+      tags:
+      - Component
+      operationId: getComponentByName
+      summary: Get a component in the environment by name
+      parameters:
+      - $ref: '#/components/parameters/EnvironmentId'
+      - name: component_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The component metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+  /v1/components/{component_id}:
+    get:
+      tags:
+      - Component
+      operationId: getComponent
+      summary: Get the latest version of a component by id
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '200':
+          description: The component metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+    patch:
+      tags:
+      - Component
+      operationId: updateComponent
+      summary: Update a component with a new version
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                component:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: The updated component metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+    delete:
+      tags:
+      - Component
+      operationId: deleteComponent
+      summary: Delete a component
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '200':
+          description: Component deleted.
+  /v1/components/{component_id}/revisions/{revision}/wasm:
+    get:
+      tags:
+      - Component
+      operationId: downloadComponentWasm
+      summary: Download the WASM binary of a specific component revision
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      - name: revision
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The WASM binary.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  parameters:
+    EnvironmentId:
+      name: environment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    GolemError:
+      type: object
+      properties:
+        error:
+          type: string
+    Component:
+      type: object
+      properties:
+        componentId:
+          type: string
+          format: uuid
+        componentName:
+          type: string
+        componentVersion:
+          type: integer
+          format: int64
+        componentSize:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+  responses:
+    Error:
+      description: An error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GolemError'
+  securitySchemes:
+    Token:
+      type: http
+      scheme: bearer
+      description: Bearer token created for your Golem account. Pass it in the Authorization header as `Bearer <token>`.
