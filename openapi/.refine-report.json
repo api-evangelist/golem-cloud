@@ -1,0 +1,20 @@
+{
+  "provider": "golem-cloud",
+  "sources": [
+    "golem-cloud-apidefinition-api-openapi.yml",
+    "golem-cloud-component-api-openapi.yml",
+    "golem-cloud-plugin-api-openapi.yml",
+    "golem-cloud-worker-api-openapi.yml"
+  ],
+  "outputs": [
+    "golem-cloud-apidefinition-api-openapi.yml",
+    "golem-cloud-component-api-openapi.yml",
+    "golem-cloud-plugin-api-openapi.yml",
+    "golem-cloud-worker-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
