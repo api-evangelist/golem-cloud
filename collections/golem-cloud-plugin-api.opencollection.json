@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golem Cloud ApiDefinition Plugin API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plugin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List registered plugins for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/accounts/:account_id/plugins",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List registered plugins for an account"
+        },
+        {
+          "info": {
+            "name": "Register a new plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/accounts/:account_id/plugins",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new plugin"
+        },
+        {
+          "info": {
+            "name": "Get a plugin by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/plugins/:plugin_id",
+            "params": [
+              {
+                "name": "plugin_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a plugin by id"
+        },
+        {
+          "info": {
+            "name": "Delete a plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/plugins/:plugin_id",
+            "params": [
+              {
+                "name": "plugin_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a plugin"
+        },
+        {
+          "info": {
+            "name": "Activate a plugin on a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/activate-plugin",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "plugin-installation-id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Activate a plugin on a worker"
+        },
+        {
+          "info": {
+            "name": "Deactivate a plugin on a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/deactivate-plugin",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "plugin-installation-id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deactivate a plugin on a worker"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

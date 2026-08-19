@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golem Cloud ApiDefinition Component API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Component",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all components in the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/envs/:environment_id/components",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all components in the environment"
+        },
+        {
+          "info": {
+            "name": "Create a new component in the environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/envs/:environment_id/components",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "component",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new WebAssembly component into the given environment."
+        },
+        {
+          "info": {
+            "name": "Get a component in the environment by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/envs/:environment_id/components/:component_name",
+            "params": [
+              {
+                "name": "environment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "component_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a component in the environment by name"
+        },
+        {
+          "info": {
+            "name": "Get the latest version of a component by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the latest version of a component by id"
+        },
+        {
+          "info": {
+            "name": "Update a component with a new version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "component",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update a component with a new version"
+        },
+        {
+          "info": {
+            "name": "Delete a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a component"
+        },
+        {
+          "info": {
+            "name": "Download the WASM binary of a specific component revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/revisions/:revision/wasm",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the WASM binary of a specific component revision"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

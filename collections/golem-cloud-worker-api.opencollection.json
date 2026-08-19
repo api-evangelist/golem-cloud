@@ -1,0 +1,339 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golem Cloud ApiDefinition Worker API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Worker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get metadata of multiple workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get metadata of multiple workers"
+        },
+        {
+          "info": {
+            "name": "Launch a new worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new durable worker (agent) from a component. The worker's execution is durably persisted and survives crashes and restarts."
+        },
+        {
+          "info": {
+            "name": "Get metadata of a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              }
+            ]
+          },
+          "docs": "Get metadata of a worker"
+        },
+        {
+          "info": {
+            "name": "Delete a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              }
+            ]
+          },
+          "docs": "Delete a worker"
+        },
+        {
+          "info": {
+            "name": "Invoke a function on a worker without waiting for a result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/invoke",
+            "headers": [
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "function",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fire-and-forget invocation of an exported function on the worker."
+        },
+        {
+          "info": {
+            "name": "Invoke a function on a worker and await its result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/invoke-and-await",
+            "headers": [
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "function",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synchronous invocation of an exported function; blocks until the durable worker returns a result value."
+        },
+        {
+          "info": {
+            "name": "Interrupt a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/interrupt",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "recovery-immediately",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Interrupt a worker"
+        },
+        {
+          "info": {
+            "name": "Resume a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/resume",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              }
+            ]
+          },
+          "docs": "Resume a worker"
+        },
+        {
+          "info": {
+            "name": "Update a worker to a new component version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/update",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a worker to a new component version"
+        },
+        {
+          "info": {
+            "name": "Get the oplog of a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/oplog",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the durable operation log that records every step of the worker."
+        },
+        {
+          "info": {
+            "name": "Connect to a worker using a websocket and stream events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/components/:component_id/workers/:agent_name/connect",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "path",
+                "description": "The worker (agent) name."
+              }
+            ]
+          },
+          "docs": "Upgrades the HTTP connection to a WebSocket and streams live worker events (stdout, stderr, log output, and invocation events). Modeled in detail in asyncapi/golem-cloud-asyncapi.yml."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

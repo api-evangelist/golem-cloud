@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golem Cloud ApiDefinition API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ApiDefinition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List HTTP API definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/definitions",
+            "params": [
+              {
+                "name": "api-definition-id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists the custom HTTP API definitions (Worker Gateway) that map external HTTP routes onto worker invocations."
+        },
+        {
+          "info": {
+            "name": "Create an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/api/definitions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Get an HTTP API definition by id and version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/:id/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an HTTP API definition by id and version"
+        },
+        {
+          "info": {
+            "name": "Update an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/:id/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "Delete an HTTP API definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/api/definitions/:id/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an HTTP API definition"
+        },
+        {
+          "info": {
+            "name": "List HTTP API deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/deployments",
+            "params": [
+              {
+                "name": "api-definition-id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List HTTP API deployments"
+        },
+        {
+          "info": {
+            "name": "Deploy an HTTP API definition to a host/domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://release.api.golem.cloud/v1/api/deployments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy an HTTP API definition to a host/domain"
+        },
+        {
+          "info": {
+            "name": "Get an HTTP API deployment by site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://release.api.golem.cloud/v1/api/deployments/:site",
+            "params": [
+              {
+                "name": "site",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an HTTP API deployment by site"
+        },
+        {
+          "info": {
+            "name": "Delete an HTTP API deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://release.api.golem.cloud/v1/api/deployments/:site",
+            "params": [
+              {
+                "name": "site",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an HTTP API deployment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

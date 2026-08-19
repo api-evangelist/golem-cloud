@@ -1,0 +1,958 @@
+{
+  "item": [
+    {
+      "id": "a0484759-db92-492c-98e8-0f76928959ac",
+      "name": "ApiDefinition",
+      "description": {
+        "content": "Custom HTTP API definitions and deployments (Worker Gateway).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac0b2edc-4346-4274-9f91-405f9a4de4bd",
+          "name": "List HTTP API definitions",
+          "request": {
+            "name": "List HTTP API definitions",
+            "description": {
+              "content": "Lists the custom HTTP API definitions (Worker Gateway) that map external HTTP routes onto worker invocations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-definition-id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "641e03be-0946-4cee-8bc1-80c4b7b3383d",
+              "name": "A list of API definitions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-definition-id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"version\": \"string\",\n    \"draft\": false,\n    \"routes\": [\n      {\n        \"method\": \"string\",\n        \"path\": \"string\",\n        \"binding\": {}\n      },\n      {\n        \"method\": \"string\",\n        \"path\": \"string\",\n        \"binding\": {}\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"version\": \"string\",\n    \"draft\": true,\n    \"routes\": [\n      {\n        \"method\": \"string\",\n        \"path\": \"string\",\n        \"binding\": {}\n      },\n      {\n        \"method\": \"string\",\n        \"path\": \"string\",\n        \"binding\": {}\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "615bb57d-2323-4a2e-bfac-630ae8b21932",
+          "name": "Create an HTTP API definition",
+          "request": {
+            "name": "Create an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf7ba2c3-dc3b-484c-b147-4d945bf9b264",
+              "name": "The created API definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4b909cb-5463-47d3-9347-98f783e5039b",
+          "name": "Get an HTTP API definition by id and version",
+          "request": {
+            "name": "Get an HTTP API definition by id and version",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                ":id",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8af9cd50-dafa-4d73-9e1b-35551511c667",
+              "name": "The API definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "definitions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b9166af-8d87-41c2-ab3a-21b5b165ac96",
+          "name": "Update an HTTP API definition",
+          "request": {
+            "name": "Update an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                ":id",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64b834c2-c9bf-48f2-b802-47321c7c6d9d",
+              "name": "The updated API definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "definitions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"draft\": \"<boolean>\",\n  \"routes\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"binding\": \"<object>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ee0e608-95ca-41a6-94fe-1c5680de7608",
+          "name": "Delete an HTTP API definition",
+          "request": {
+            "name": "Delete an HTTP API definition",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "definitions",
+                ":id",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d7f235d-b144-498e-8805-a150af0ee49a",
+              "name": "API definition deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "definitions",
+                    ":id",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc563b64-523c-4c82-8755-47ca679ff77e",
+          "name": "List HTTP API deployments",
+          "request": {
+            "name": "List HTTP API deployments",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-definition-id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63ab9301-8c5e-42f3-8ee7-f825e6e6ffcd",
+              "name": "A list of API deployments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-definition-id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apiDefinitions\": [\n      {\n        \"id\": \"string\",\n        \"version\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"version\": \"string\"\n      }\n    ],\n    \"site\": {\n      \"host\": \"string\",\n      \"subdomain\": \"string\"\n    },\n    \"createdAt\": \"2024-05-28T12:36:17.904Z\"\n  },\n  {\n    \"apiDefinitions\": [\n      {\n        \"id\": \"string\",\n        \"version\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"version\": \"string\"\n      }\n    ],\n    \"site\": {\n      \"host\": \"string\",\n      \"subdomain\": \"string\"\n    },\n    \"createdAt\": \"1991-05-08T02:50:20.791Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e46db9e-083c-42d6-be7e-59533ae20602",
+          "name": "Deploy an HTTP API definition to a host/domain",
+          "request": {
+            "name": "Deploy an HTTP API definition to a host/domain",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiDefinitionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"site\": {\n    \"host\": \"<string>\",\n    \"subdomain\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "360dce87-026a-4934-90bc-67b7b8c70409",
+              "name": "The created deployment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiDefinitionId\": \"<string>\",\n  \"version\": \"<string>\",\n  \"site\": {\n    \"host\": \"<string>\",\n    \"subdomain\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiDefinitions\": [\n    {\n      \"id\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"site\": {\n    \"host\": \"string\",\n    \"subdomain\": \"string\"\n  },\n  \"createdAt\": \"2009-05-01T05:49:25.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f8553c2-b140-43a3-8c9e-583847b2b594",
+          "name": "Get an HTTP API deployment by site",
+          "request": {
+            "name": "Get an HTTP API deployment by site",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments",
+                ":site"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee6c97b8-0f9f-4a1e-af1e-ebdb4d8a50b5",
+              "name": "The API deployment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "deployments",
+                    ":site"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiDefinitions\": [\n    {\n      \"id\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"site\": {\n    \"host\": \"string\",\n    \"subdomain\": \"string\"\n  },\n  \"createdAt\": \"2009-05-01T05:49:25.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6156daaa-2134-4399-b8ef-0db85e449315",
+          "name": "Delete an HTTP API deployment",
+          "request": {
+            "name": "Delete an HTTP API deployment",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "api",
+                "deployments",
+                ":site"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a60ac30b-fc14-46c2-b5a7-29068dc955bc",
+              "name": "Deployment deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api",
+                    "deployments",
+                    ":site"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://release.api.golem.cloud",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "431642ab-a925-40d5-b8bb-b6c131aa2477",
+    "name": "Golem Cloud ApiDefinition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.\n\nContact Support:\n Name: Golem Cloud Support",
+      "type": "text/plain"
+    }
+  }
+}
