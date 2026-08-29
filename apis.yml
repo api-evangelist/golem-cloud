@@ -7,6 +7,18 @@ description: Golem is an open-source durable computing platform for building age
   invoke durable serverless workers through a REST API; the runtime transparently persists
   every worker's execution so it survives crashes, restarts, and redeploys. Golem ships as
   open source you self-host and as the managed Golem Cloud hosted service.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
