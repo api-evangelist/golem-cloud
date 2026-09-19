@@ -84,6 +84,8 @@ apis:
   humanURL: https://learn.golem.cloud/concepts/components
   baseURL: https://release.api.golem.cloud
   tags:
+  - Components
+  tags_raw:
   - Component
   properties:
   - type: OpenAPI
@@ -118,6 +120,8 @@ apis:
   humanURL: https://learn.golem.cloud/concepts/components
   baseURL: https://release.api.golem.cloud
   tags:
+  - Plugins
+  tags_raw:
   - Plugin
   properties:
   - type: OpenAPI
