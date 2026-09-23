@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Golem Cloud ApiDefinition Worker API
+  title: Golem Cloud Worker API
   description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
   termsOfService: https://www.golem.cloud/terms
   contact:
@@ -237,6 +237,29 @@ paths:
           description: Switching protocols to WebSocket.
 components:
   schemas:
+    InvokeResult:
+      type: object
+      properties:
+        result: {}
+    UpdateWorkerRequest:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - Automatic
+          - Manual
+        targetVersion:
+          type: integer
+          format: int64
+    WorkerId:
+      type: object
+      properties:
+        componentId:
+          type: string
+          format: uuid
+        workerName:
+          type: string
     WorkerCreationRequest:
       type: object
       required:
@@ -252,17 +275,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    UpdateWorkerRequest:
-      type: object
-      properties:
-        mode:
-          type: string
-          enum:
-          - Automatic
-          - Manual
-        targetVersion:
-          type: integer
-          format: int64
     WorkerMetadata:
       type: object
       properties:
@@ -299,18 +311,6 @@ components:
         params:
           type: array
           items: {}
-    InvokeResult:
-      type: object
-      properties:
-        result: {}
-    WorkerId:
-      type: object
-      properties:
-        componentId:
-          type: string
-          format: uuid
-        workerName:
-          type: string
   parameters:
     ComponentId:
       name: component_id

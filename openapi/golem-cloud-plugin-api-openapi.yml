@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Golem Cloud ApiDefinition Plugin API
+  title: Golem Cloud Plugin API
   description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
   termsOfService: https://www.golem.cloud/terms
   contact:
@@ -115,15 +115,14 @@ paths:
           description: Plugin deactivated.
 components:
   parameters:
-    ComponentId:
-      name: component_id
+    AccountId:
+      name: account_id
       in: path
       required: true
       schema:
         type: string
-        format: uuid
-    PluginId:
-      name: plugin_id
+    ComponentId:
+      name: component_id
       in: path
       required: true
       schema:
@@ -136,12 +135,13 @@ components:
       description: The worker (agent) name.
       schema:
         type: string
-    AccountId:
-      name: account_id
+    PluginId:
+      name: plugin_id
       in: path
       required: true
       schema:
         type: string
+        format: uuid
   schemas:
     Plugin:
       type: object

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Golem Cloud ApiDefinition Component API
+  title: Golem Cloud Component API
   description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
   termsOfService: https://www.golem.cloud/terms
   contact:
@@ -159,21 +159,6 @@ paths:
                 type: string
                 format: binary
 components:
-  parameters:
-    EnvironmentId:
-      name: environment_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    ComponentId:
-      name: component_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   schemas:
     GolemError:
       type: object
@@ -197,6 +182,21 @@ components:
         createdAt:
           type: string
           format: date-time
+  parameters:
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    EnvironmentId:
+      name: environment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   responses:
     Error:
       description: An error response.

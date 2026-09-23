@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Golem Cloud ApiDefinition API
+  title: Golem Cloud API Definition API
   description: REST API for the Golem durable computing platform. Manage WebAssembly components, launch and invoke durable workers, define and deploy custom HTTP APIs (the Worker Gateway), and manage plugins. The same API is served by the open-source self-hosted Golem and by the managed Golem Cloud hosted service. Authenticate with a bearer token created from your account.
   termsOfService: https://www.golem.cloud/terms
   contact:
@@ -181,6 +181,20 @@ paths:
           description: Deployment deleted.
 components:
   schemas:
+    ApiDeploymentRequest:
+      type: object
+      properties:
+        apiDefinitionId:
+          type: string
+        version:
+          type: string
+        site:
+          type: object
+          properties:
+            host:
+              type: string
+            subdomain:
+              type: string
     HttpApiDefinition:
       type: object
       properties:
@@ -223,20 +237,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    ApiDeploymentRequest:
-      type: object
-      properties:
-        apiDefinitionId:
-          type: string
-        version:
-          type: string
-        site:
-          type: object
-          properties:
-            host:
-              type: string
-            subdomain:
-              type: string
   parameters:
     ApiDefinitionVersion:
       name: version

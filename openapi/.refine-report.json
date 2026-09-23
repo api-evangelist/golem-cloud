@@ -1,10 +1,7 @@
 {
   "provider": "golem-cloud",
   "sources": [
-    "golem-cloud-apidefinition-api-openapi.yml",
-    "golem-cloud-component-api-openapi.yml",
-    "golem-cloud-plugin-api-openapi.yml",
-    "golem-cloud-worker-api-openapi.yml"
+    "_original/golem-cloud-openapi.yml"
   ],
   "outputs": [
     "golem-cloud-apidefinition-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "golem-cloud-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "golem-cloud-apidefinition-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "golem-cloud-component-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "golem-cloud-plugin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "golem-cloud-worker-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
