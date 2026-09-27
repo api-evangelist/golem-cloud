@@ -159,12 +159,29 @@ paths:
                 type: string
                 format: binary
 components:
+  responses:
+    Error:
+      description: An error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GolemError'
+  parameters:
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    EnvironmentId:
+      name: environment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
-    GolemError:
-      type: object
-      properties:
-        error:
-          type: string
     Component:
       type: object
       properties:
@@ -182,28 +199,11 @@ components:
         createdAt:
           type: string
           format: date-time
-  parameters:
-    ComponentId:
-      name: component_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    EnvironmentId:
-      name: environment_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-  responses:
-    Error:
-      description: An error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GolemError'
+    GolemError:
+      type: object
+      properties:
+        error:
+          type: string
   securitySchemes:
     Token:
       type: http

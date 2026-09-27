@@ -8,16 +8,21 @@ description: Golem is an open-source durable computing platform for building age
   every worker's execution so it survives crashes, restarts, and redeploys. Golem ships as
   open source you self-host and as the managed Golem Cloud hosted service.
 deliveryModel:
-  model: saas
-  open_source: false
+  model: unknown
+  license_evidence:
+    repo: golemcloud/golem
+    spdx: NOASSERTION
+    stars: 1499
+  open_source: unknown
   commercial: true
   callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-unlicensed
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -40,6 +45,7 @@ tags:
 - WebAssembly
 - Workers
 - Agents
+- Real-Time
 created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.23'

@@ -241,24 +241,14 @@ components:
       type: object
       properties:
         result: {}
-    UpdateWorkerRequest:
+    WorkersMetadataResponse:
       type: object
       properties:
-        mode:
-          type: string
-          enum:
-          - Automatic
-          - Manual
-        targetVersion:
-          type: integer
-          format: int64
-    WorkerId:
-      type: object
-      properties:
-        componentId:
-          type: string
-          format: uuid
-        workerName:
+        workers:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerMetadata'
+        cursor:
           type: string
     WorkerCreationRequest:
       type: object
@@ -275,6 +265,12 @@ components:
           type: object
           additionalProperties:
             type: string
+    InvokeParameters:
+      type: object
+      properties:
+        params:
+          type: array
+          items: {}
     WorkerMetadata:
       type: object
       properties:
@@ -296,29 +292,26 @@ components:
         createdAt:
           type: string
           format: date-time
-    WorkersMetadataResponse:
+    UpdateWorkerRequest:
       type: object
       properties:
-        workers:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkerMetadata'
-        cursor:
+        mode:
           type: string
-    InvokeParameters:
+          enum:
+          - Automatic
+          - Manual
+        targetVersion:
+          type: integer
+          format: int64
+    WorkerId:
       type: object
       properties:
-        params:
-          type: array
-          items: {}
+        componentId:
+          type: string
+          format: uuid
+        workerName:
+          type: string
   parameters:
-    ComponentId:
-      name: component_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
     AgentName:
       name: agent_name
       in: path
@@ -326,6 +319,13 @@ components:
       description: The worker (agent) name.
       schema:
         type: string
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     Token:
       type: http

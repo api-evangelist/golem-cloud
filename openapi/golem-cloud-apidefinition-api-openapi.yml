@@ -180,6 +180,19 @@ paths:
         '200':
           description: Deployment deleted.
 components:
+  parameters:
+    ApiDefinitionVersion:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+    ApiDefinitionId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     ApiDeploymentRequest:
       type: object
@@ -237,19 +250,6 @@ components:
         createdAt:
           type: string
           format: date-time
-  parameters:
-    ApiDefinitionVersion:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-    ApiDefinitionId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     Token:
       type: http

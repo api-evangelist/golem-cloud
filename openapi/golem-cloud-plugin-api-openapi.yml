@@ -115,14 +115,8 @@ paths:
           description: Plugin deactivated.
 components:
   parameters:
-    AccountId:
-      name: account_id
-      in: path
-      required: true
-      schema:
-        type: string
-    ComponentId:
-      name: component_id
+    PluginId:
+      name: plugin_id
       in: path
       required: true
       schema:
@@ -135,13 +129,19 @@ components:
       description: The worker (agent) name.
       schema:
         type: string
-    PluginId:
-      name: plugin_id
+    ComponentId:
+      name: component_id
       in: path
       required: true
       schema:
         type: string
         format: uuid
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Plugin:
       type: object
