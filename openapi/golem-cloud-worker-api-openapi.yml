@@ -237,19 +237,6 @@ paths:
           description: Switching protocols to WebSocket.
 components:
   schemas:
-    InvokeResult:
-      type: object
-      properties:
-        result: {}
-    WorkersMetadataResponse:
-      type: object
-      properties:
-        workers:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkerMetadata'
-        cursor:
-          type: string
     WorkerCreationRequest:
       type: object
       required:
@@ -265,6 +252,38 @@ components:
           type: object
           additionalProperties:
             type: string
+    WorkersMetadataResponse:
+      type: object
+      properties:
+        workers:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerMetadata'
+        cursor:
+          type: string
+    InvokeResult:
+      type: object
+      properties:
+        result: {}
+    WorkerId:
+      type: object
+      properties:
+        componentId:
+          type: string
+          format: uuid
+        workerName:
+          type: string
+    UpdateWorkerRequest:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+          - Automatic
+          - Manual
+        targetVersion:
+          type: integer
+          format: int64
     InvokeParameters:
       type: object
       properties:
@@ -292,25 +311,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    UpdateWorkerRequest:
-      type: object
-      properties:
-        mode:
-          type: string
-          enum:
-          - Automatic
-          - Manual
-        targetVersion:
-          type: integer
-          format: int64
-    WorkerId:
-      type: object
-      properties:
-        componentId:
-          type: string
-          format: uuid
-        workerName:
-          type: string
   parameters:
     AgentName:
       name: agent_name

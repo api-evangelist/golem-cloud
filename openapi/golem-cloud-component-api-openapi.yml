@@ -159,23 +159,16 @@ paths:
                 type: string
                 format: binary
 components:
-  responses:
-    Error:
-      description: An error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GolemError'
   parameters:
-    ComponentId:
-      name: component_id
+    EnvironmentId:
+      name: environment_id
       in: path
       required: true
       schema:
         type: string
         format: uuid
-    EnvironmentId:
-      name: environment_id
+    ComponentId:
+      name: component_id
       in: path
       required: true
       schema:
@@ -204,6 +197,13 @@ components:
       properties:
         error:
           type: string
+  responses:
+    Error:
+      description: An error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GolemError'
   securitySchemes:
     Token:
       type: http

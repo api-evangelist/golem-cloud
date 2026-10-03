@@ -194,6 +194,28 @@ components:
       schema:
         type: string
   schemas:
+    ApiDeployment:
+      type: object
+      properties:
+        apiDefinitions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              version:
+                type: string
+        site:
+          type: object
+          properties:
+            host:
+              type: string
+            subdomain:
+              type: string
+        createdAt:
+          type: string
+          format: date-time
     ApiDeploymentRequest:
       type: object
       properties:
@@ -228,28 +250,6 @@ components:
                 type: string
               binding:
                 type: object
-    ApiDeployment:
-      type: object
-      properties:
-        apiDefinitions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              version:
-                type: string
-        site:
-          type: object
-          properties:
-            host:
-              type: string
-            subdomain:
-              type: string
-        createdAt:
-          type: string
-          format: date-time
   securitySchemes:
     Token:
       type: http
