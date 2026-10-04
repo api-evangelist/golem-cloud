@@ -180,20 +180,27 @@ paths:
         '200':
           description: Deployment deleted.
 components:
-  parameters:
-    ApiDefinitionVersion:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-    ApiDefinitionId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    HttpApiDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+        draft:
+          type: boolean
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              method:
+                type: string
+              path:
+                type: string
+              binding:
+                type: object
     ApiDeployment:
       type: object
       properties:
@@ -230,26 +237,19 @@ components:
               type: string
             subdomain:
               type: string
-    HttpApiDefinition:
-      type: object
-      properties:
-        id:
-          type: string
-        version:
-          type: string
-        draft:
-          type: boolean
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              method:
-                type: string
-              path:
-                type: string
-              binding:
-                type: object
+  parameters:
+    ApiDefinitionVersion:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+    ApiDefinitionId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     Token:
       type: http

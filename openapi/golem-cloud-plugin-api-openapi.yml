@@ -114,6 +114,34 @@ paths:
         '200':
           description: Plugin deactivated.
 components:
+  parameters:
+    AgentName:
+      name: agent_name
+      in: path
+      required: true
+      description: The worker (agent) name.
+      schema:
+        type: string
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PluginId:
+      name: plugin_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
     Plugin:
       type: object
@@ -128,34 +156,6 @@ components:
           type: object
         specs:
           type: object
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      required: true
-      schema:
-        type: string
-    ComponentId:
-      name: component_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    AgentName:
-      name: agent_name
-      in: path
-      required: true
-      description: The worker (agent) name.
-      schema:
-        type: string
-    PluginId:
-      name: plugin_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     Token:
       type: http
