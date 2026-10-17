@@ -181,6 +181,20 @@ paths:
           description: Deployment deleted.
 components:
   schemas:
+    ApiDeploymentRequest:
+      type: object
+      properties:
+        apiDefinitionId:
+          type: string
+        version:
+          type: string
+        site:
+          type: object
+          properties:
+            host:
+              type: string
+            subdomain:
+              type: string
     HttpApiDefinition:
       type: object
       properties:
@@ -223,29 +237,15 @@ components:
         createdAt:
           type: string
           format: date-time
-    ApiDeploymentRequest:
-      type: object
-      properties:
-        apiDefinitionId:
-          type: string
-        version:
-          type: string
-        site:
-          type: object
-          properties:
-            host:
-              type: string
-            subdomain:
-              type: string
   parameters:
-    ApiDefinitionVersion:
-      name: version
+    ApiDefinitionId:
+      name: id
       in: path
       required: true
       schema:
         type: string
-    ApiDefinitionId:
-      name: id
+    ApiDefinitionVersion:
+      name: version
       in: path
       required: true
       schema:

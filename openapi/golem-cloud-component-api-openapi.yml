@@ -160,11 +160,6 @@ paths:
                 format: binary
 components:
   schemas:
-    GolemError:
-      type: object
-      properties:
-        error:
-          type: string
     Component:
       type: object
       properties:
@@ -182,21 +177,11 @@ components:
         createdAt:
           type: string
           format: date-time
-  parameters:
-    ComponentId:
-      name: component_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-    EnvironmentId:
-      name: environment_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
+    GolemError:
+      type: object
+      properties:
+        error:
+          type: string
   responses:
     Error:
       description: An error response.
@@ -204,6 +189,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GolemError'
+  parameters:
+    EnvironmentId:
+      name: environment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     Token:
       type: http
