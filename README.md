@@ -1,4 +1,4 @@
-# Golem (golem-cloud)
+# Golem
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,122 +66,140 @@
 
 Golem is an open-source durable computing platform for building agents and distributed applications that never lose state. You deploy WebAssembly components and invoke durable serverless workers through a REST API; the runtime transparently persists every worker's execution so it survives crashes, restarts, and redeploys. Golem ships as open source you self-host and as the managed Golem Cloud hosted service.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/golem-cloud/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/golem-cloud/refs/heads/main/apis.yml)
+**Areas:** Durable Computing · Serverless · WebAssembly · Workers · Agents · Real-Time
 
-## Tags
+## Golem on APIs.io
 
-- Durable Computing
-- Serverless
-- WebAssembly
-- Workers
-- Agents
+Everything profiled for Golem is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/golem-cloud/](https://apis.io/providers/golem-cloud/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Golem ApiDefinition API](https://apis.io/apis/golem-cloud/golem-cloud-apidefinition-api/) — Custom HTTP API definitions and deployments (Worker Gateway).
+- [Golem Component API](https://apis.io/apis/golem-cloud/golem-cloud-component-api/) — WebAssembly component registry operations.
+- [Golem Plugin API](https://apis.io/apis/golem-cloud/golem-cloud-plugin-api/) — Plugin registration and grants.
+- [Golem Worker API](https://apis.io/apis/golem-cloud/golem-cloud-worker-api/) — Durable worker lifecycle and invocation operations.
 
-## APIs
+### Published properties
 
-### Golem Components API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Upload, version, and list WebAssembly components in an environment. Each component is the deployable unit of code from which durable workers (agents) are launched, with revisions and downloadable WASM binaries.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://learn.golem.cloud/concepts/components](https://learn.golem.cloud/concepts/components)
-- **Base URL:** `https://release.api.golem.cloud`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Golem Worker Connect (WebSocket) API](https://apis.io/asyncapis/golem-cloud/golem-cloud-asyncapi/)
 
-- Components
-- WebAssembly
-- Registry
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://learn.golem.cloud/concepts/components)
-- [API Reference](https://learn.golem.cloud/rest-api/component)
-- [OpenAPI](openapi/golem-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/golem-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golem-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/golemcloud/golem)
+- [/v1/components/{component_id}/workers/{agent_name}/connect](https://apis.io/channels/golem-cloud/v1-components-component-id-workers-agent-name-connect/)
 
-### Golem Workers & Invocation API
+#### Agentic access (1)
 
-Launch, invoke, and manage durable workers. Invoke fire-and-forget or invoke-and-await for results, interrupt, resume, update, revert, fork, inspect oplog and files, and stream live events over a WebSocket connection. Execution is durably persisted so workers survive failures.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://learn.golem.cloud/concepts/workers](https://learn.golem.cloud/concepts/workers)
-- **Base URL:** `https://release.api.golem.cloud`
+- [Golem Cloud Agentic Access](https://apis.io/agentic-access/golem-cloud/golem-cloud-agentic-access/)
 
-#### Tags
+#### Collections (5)
 
-- Workers
-- Invocation
-- Durable Execution
+Postman and Open Collection request collections.
 
-#### Properties
+- [Golem Cloud API](https://apis.io/collections/golem-cloud/open-golem-cloud/)
+- [Golem Cloud ApiDefinition API](https://apis.io/collections/golem-cloud/open-golem-cloud-apidefinition-api/)
+- [Golem Cloud ApiDefinition Component API](https://apis.io/collections/golem-cloud/open-golem-cloud-component-api/)
+- [Golem Cloud ApiDefinition Plugin API](https://apis.io/collections/golem-cloud/open-golem-cloud-plugin-api/)
+- [Golem Cloud ApiDefinition Worker API](https://apis.io/collections/golem-cloud/open-golem-cloud-worker-api/)
 
-- [Documentation](https://learn.golem.cloud/concepts/workers)
-- [API Reference](https://learn.golem.cloud/rest-api/worker)
-- [OpenAPI](openapi/golem-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](asyncapi/golem-cloud-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/golem-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golem-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/golemcloud/golem)
+#### Governance rules (1)
 
-### Golem API Definitions & Deployments API
+Spectral rulesets for the provider's contracts.
 
-Define and deploy custom HTTP APIs (the Worker Gateway) that map external HTTP routes onto worker invocations, bind them to domains, and manage deployment revisions per environment - turning durable workers into public HTTP endpoints.
+- [Golem — asyncapi rules](https://apis.io/rules/golem-cloud/golem-cloud-asyncapi-spectral-rules/)
 
-- **Human URL:** [https://learn.golem.cloud/invoke/making-custom-apis](https://learn.golem.cloud/invoke/making-custom-apis)
-- **Base URL:** `https://release.api.golem.cloud`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- API Gateway
-- Deployments
-- HTTP APIs
+- [Golem Cloud Authentication](https://apis.io/security/golem-cloud/golem-cloud-authentication/)
+- [Golem Cloud Domain Security](https://apis.io/security/golem-cloud/golem-cloud-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://learn.golem.cloud/invoke/making-custom-apis)
-- [API Reference](https://learn.golem.cloud/rest-api/api-deployment)
-- [OpenAPI](openapi/golem-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/golem-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golem-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/golemcloud/golem)
+Published plans, tiers and prices.
 
-### Golem Plugins API
+- [Golem Cloud Plans Pricing](https://apis.io/plans/golem-cloud/golem-cloud-plans-pricing/)
 
-Register, list, and delete plugins and grant them to environments; plugins can be activated or deactivated on individual workers to extend the runtime with component transformation and observability hooks.
+#### Rate limits (1)
 
-- **Human URL:** [https://learn.golem.cloud/concepts/plugins](https://learn.golem.cloud/concepts/plugins)
-- **Base URL:** `https://release.api.golem.cloud`
+Published request limits.
 
-#### Tags
+- [Golem Cloud Rate Limits](https://apis.io/rate-limits/golem-cloud/golem-cloud-rate-limits/)
 
-- Plugins
-- Extensibility
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://learn.golem.cloud/concepts/plugins)
-- [API Reference](https://learn.golem.cloud/rest-api/plugin)
-- [OpenAPI](openapi/golem-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/golem-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golem-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/golemcloud/golem)
+- [Golem Cloud Finops](https://apis.io/finops/golem-cloud/golem-cloud-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [GitHub Organization](https://github.com/golemcloud)
-- [LinkedIn](https://www.linkedin.com/company/golem-cloud)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.golem.cloud)
 - [Documentation](https://learn.golem.cloud)
-- [Plans](plans/golem-cloud-plans-pricing.yml)
-- [Rate Limits](rate-limits/golem-cloud-rate-limits.yml)
-- [Fin Ops](finops/golem-cloud-finops.yml)
+- [Blog](https://www.golem.cloud/rss.xml)
+- [GitHub](https://github.com/golemcloud)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.8 |
+| Contract governance | 11.4 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/golem-cloud/](https://apis.io/providers/golem-cloud/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Golem: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/golem-cloud/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
